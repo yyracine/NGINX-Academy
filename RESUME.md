@@ -6,18 +6,22 @@
 
 ## 📌 Où on en est (dernier état)
 
-**Session du 2026-11-02** : correction des bugs de navigation, révision de contenu complète, vérification navigateur, dépôt git en cours.
+**Session du 2026-11-02** : session complète — bugs de navigation, révision de contenu, tests poussés, dépôt git créé et poussé. **Objectif atteint.**
 
 - ✅ **Bug Lexique réparé** : `renderLexique()` n'effaçait pas `#main` (utilisait `appendChild`) → la page d'accueil restait collée au-dessus du lexique. Fix : `main.innerHTML = ''` au début de la fonction (`js/app.js`).
-- ✅ **Étiquette module 11 (Projets) corrigée** : affichait « en préparation / à venir » alors que le module est fonctionnel. Maintenant « 3 projets · kit de correction » (sidebar) et « prêt / 3 projets » (accueil). SW bumpé **v1.4.0**.
-- ✅ **Révision de contenu** : 36 exercices « config » sans `prompt` + 1 exercice sans `title` → ajout des prompts/titre + fix défensif dans `quiz.js` (n'affiche jamais « undefined »). Normalisation typographique : 458 apostrophes ASCII → **U+2019** partout dans les textes français (préserve « Let's Encrypt »). Smoke test renforcé (vérifie prompt/titre et typographie).
-- ✅ **Smoke test vert** : `node tools/smoke.js` → `✅ TOUT EST BON`.
-- ✅ **Tests navigateur** : accueil, modules, leçons (cours/quiz/exercices), bac à sable (linter + schéma des blocs), projets, kit, lexique (filtre) — tous fonctionnels, navigation sans accumulation de contenu.
+- ✅ **Étiquette module 11 (Projets) corrigée** : affichait « en préparation / à venir » alors que le module est fonctionnel. Maintenant « 3 projets · kit de correction » (sidebar) et « prêt / 3 projets » (accueil).
+- ✅ **Révision de contenu** : 36 exercices « config » sans `prompt` + 1 exercice sans `title` → ajout des prompts/titre + fix défensif dans `quiz.js` (n'affiche jamais « undefined »). Normalisation typographique : 458 apostrophes ASCII → **U+2019** partout (préserve « Let's Encrypt »).
+- ✅ **UX** : badge de leçon mis à jour en direct (« Leçon terminée ✓ ») dès la dernière réponse (`refreshLessonChip`).
+- ✅ **Smoke test renforcé** (vérifie prompt/titre exercices + typographie) et **vert** : `node tools/smoke.js` → `✅ TOUT EST BON`.
+- ✅ **Tests poussés navigateur** : 60/60 leçons visitées sans problème, h1 unique partout, aucun « undefined », flux complet testé (quiz→verrouillage, exercices mcq/order/config, progression localStorage 2 %→100 %, certificat, réinitialisation, projets persistance, filtre lexique), zéro erreur console.
+- ✅ **Dépôt git** : init `main`, commit `9328dbe` « Nginx Academy v1.5.0 », push OK → `https://github.com/yyracine/NGINX-Academy`.
+- ⚠️ **Piège de test retenu** : en test Playwright, le SW cache-first + cache HTTP du navigateur servent du JS périmé ; purger SW+caches puis utiliser un contexte isolé ou injecter les fichiers frais dans le cache SW.
 
-## 🔲 À faire (reste du plan de la session)
+## 🔲 À faire (piste futures — pas bloquantes)
 
-- [ ] **Tests poussés** — parcours complet des 10 modules dans le navigateur (en cours)
-- [ ] **Dépôt git** : init, commit, push vers `https://github.com/yyracine/NGINX-Academy`
+- [ ] Prévisualiser le rendu réel sur GitHub Pages (Settings → Pages → branche main)
+- [ ] (Optionnel) Traduire ou ajouter un module « NGINX en production (Docker/K8s) »
+- [ ] Vérifier l'installation PWA sur un appareil réel (Android/Windows)
 
 ---
 
@@ -79,5 +83,5 @@ node tools/smoke.js                            # smoke test données + linter
 
 | Date | Quoi |
 |---|---|
-| 2026-11-02 | Création RESUME.md · fix Lexique · fix étiquette module 11 · révision contenu (prompts exercices + typographie U+2019 + smoke renforcé) · SW v1.4.0 · tests navigateur · git (en cours) |
+| 2026-11-02 | Session complète : RESUME.md · fix Lexique · étiquette module 11 · révision contenu (prompts + typographie U+2019) · badge leçon live · smoke renforcé · tests poussés (60/60) · **git init + commit + push** → github.com/yyracine/NGINX-Academy |
 | 2026-11-01 | Construction du contenu : modules 1→10 (60 leçons), quiz, exercices, projets, kit, guide, lexique, PWA, smoke test |
