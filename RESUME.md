@@ -15,6 +15,8 @@
 - ✅ **Smoke test renforcé** (vérifie prompt/titre exercices + typographie) et **vert** : `node tools/smoke.js` → `✅ TOUT EST BON`.
 - ✅ **Tests poussés navigateur** : 60/60 leçons visitées sans problème, h1 unique partout, aucun « undefined », flux complet testé (quiz→verrouillage, exercices mcq/order/config, progression localStorage 2 %→100 %, certificat, réinitialisation, projets persistance, filtre lexique), zéro erreur console.
 - ✅ **Dépôt git** : init `main`, commit `9328dbe` « Nginx Academy v1.5.0 », push OK → `https://github.com/yyracine/NGINX-Academy`.
+- ✅ **Déploiement GitHub Pages** : activé (branch `main`, racine, `.nojekyll` ajouté car le build Jekyll échouait) → **https://yyracine.github.io/NGINX-Academy/** — vérifié en ligne : accueil, leçons (4 quiz + 2 exercices), lexique (70 termes), 0 « undefined », service worker enregistré, CSS/manifest OK.
+- ⚠️ **SÉCURITÉ** : le token OAuth GitHub stocké par Git Credential Manager (préfixe `gho_…`, scopes gist/repo/workflow) a été **affiché par erreur** dans la sortie d'une commande lors de la session. **À révoquer** sur GitHub (Settings → Applications → Authorized OAuth Apps / token) et à retirer de Windows Credential Manager (entrée `git:https://github.com`), puis re-générer via `git credential` au prochain push.
 - ⚠️ **Piège de test retenu** : en test Playwright, le SW cache-first + cache HTTP du navigateur servent du JS périmé ; purger SW+caches puis utiliser un contexte isolé ou injecter les fichiers frais dans le cache SW.
 
 ## 🔲 À faire (piste futures — pas bloquantes)
@@ -83,5 +85,5 @@ node tools/smoke.js                            # smoke test données + linter
 
 | Date | Quoi |
 |---|---|
-| 2026-11-02 | Session complète : RESUME.md · fix Lexique · étiquette module 11 · révision contenu (prompts + typographie U+2019) · badge leçon live · smoke renforcé · tests poussés (60/60) · **git init + commit + push** → github.com/yyracine/NGINX-Academy |
+| 2026-11-02 | Session complète : RESUME.md · fix Lexique · étiquette module 11 · révision contenu (prompts + typographie U+2019) · badge leçon live · smoke renforcé · tests poussés (60/60) · **git init + commit + push** → github.com/yyracine/NGINX-Academy · **GitHub Pages activé** (.nojekyll) → https://yyracine.github.io/NGINX-Academy/ · README de présentation |
 | 2026-11-01 | Construction du contenu : modules 1→10 (60 leçons), quiz, exercices, projets, kit, guide, lexique, PWA, smoke test |
